@@ -62,9 +62,7 @@ public final class CNPJ extends Document {
 
 	@Override
 	public String getNumberFormatted() {
-		StringBuilder formatter = new StringBuilder(getNumber());
-		formatter.insert(2, ".").insert(6, ".").insert(10, "/").insert(15, "-");
-		return formatter.toString();
+		return getNumber().replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})", "$1.$2.$3/$4-");
 	}
 
 }

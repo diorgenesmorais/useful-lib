@@ -66,9 +66,7 @@ public final class CPF extends Document {
 
 	@Override
 	public String getNumberFormatted() {
-		StringBuilder formatted = new StringBuilder(getNumber());
-		formatted.insert(3, ".").insert(7, ".").insert(11, "-");
-		return formatted.toString();
+		return getNumber().replaceAll("(\\d{3})(\\d{3})(\\d{3})", "$1.$2.$3-");
 	}
 
 }
