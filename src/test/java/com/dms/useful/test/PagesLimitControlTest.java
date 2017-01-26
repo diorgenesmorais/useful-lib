@@ -1,9 +1,10 @@
 package com.dms.useful.test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.dms.exceptions.ValidateException;
 import com.dms.useful.pagination.PagesLimitControl;
 
 public class PagesLimitControlTest {
@@ -14,7 +15,7 @@ public class PagesLimitControlTest {
 
 	@Test
 	public void deveGerarUmLimiteParaMenosDeCincoPaginas() throws Exception {
-		this.current = 3;
+		this.current = 2;
 		this.totalPages = 3;
 		int expectedMim = 1;
 		int expectedMax = 3;
@@ -49,9 +50,12 @@ public class PagesLimitControlTest {
 	 * 24	29		25	30
 	 * ...			...
 	 * </pre>
+	 * 
+	 * @throws Exception
+	 *             nenhuma excessão esperada
 	 */
 	@Test
-	public void deveGerarUmIntervalodeSeisPaginas() throws Exception {
+	public void deveGerarUmIntervaloDeSeisPaginas() throws Exception {
 		this.current = 26;
 		this.totalPages = 29;
 		int expectedMim = 25;
@@ -61,4 +65,36 @@ public class PagesLimitControlTest {
 		assertEquals(expectedMim, pages.getFirst());
 		assertEquals(expectedMax, pages.getLast());
 	}
+
+	/**
+	 * testar os valores mínimos
+	 * 
+	 * @throws ValidateException
+	 *             algum valor de um dos parâmetros não aceitável
+	 */
+	@Test
+	public void deveAceitarValoresMinimos() throws ValidateException {
+		pages = new PagesLimitControl(0, 1, 1);
+		assertEquals(1, pages.getFirst());
+		assertEquals(1, pages.getLast());
+	}
+
+	@Test(expected = ValidateException.class)
+	public void deveFalharComLimiteMenorQueUm() throws Exception {
+		pages = new PagesLimitControl(0, 1, 0);
+		fail("deveria falhar: limite mínimo de ser um");
+	}
+
+	@Test(expected = ValidateException.class)
+	public void deveFalharSePageCurrentMaiorQueTotalPages() throws Exception {
+		pages = new PagesLimitControl(1, 1, 1);
+		fail("deveria falhar: a página atual deve ser menor que o total de páginas");
+	}
+
+	@Test(expected = ValidateException.class)
+	public void deveFalharComDeTotalPagesZero() throws Exception {
+		pages = new PagesLimitControl(-1, 0);
+		fail("deveria falhar: total de páginas deve ser maior que zero");
+	}
+
 }

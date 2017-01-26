@@ -38,7 +38,6 @@ public class BarcodeTest {
 	@Test
 	public void deveSerUmBarcodeValido() throws Exception {
 		barcode = new Barcode("7891000053508");
-		System.out.println(barcode);
 		assertEquals("7891000053508", barcode.getNumber());
 	}
 

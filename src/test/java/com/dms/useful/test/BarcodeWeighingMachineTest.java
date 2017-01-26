@@ -20,7 +20,6 @@ public class BarcodeWeighingMachineTest {
 	@Test
 	public void deveObterOPrecoPorUnidade() throws Exception {
 		barcode = new BarcodeWeighingMachine("2000200003199");
-		System.out.println(barcode);
 		assertEquals(3.19, barcode.getPricePerUnit().doubleValue(), 0.005);
 	}
 
