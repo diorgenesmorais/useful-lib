@@ -1,4 +1,4 @@
-package com.dms.useful;
+package com.dms.useful.pagination;
 
 /**
  * This class defines the minimum and maximum limit of pages to be generated.

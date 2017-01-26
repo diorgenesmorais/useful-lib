@@ -1,10 +1,10 @@
 package com.dms.useful.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.dms.useful.PagesLimitControl;
+import com.dms.useful.pagination.PagesLimitControl;
 
 public class PagesLimitControlTest {
 
