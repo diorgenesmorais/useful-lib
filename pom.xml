@@ -14,6 +14,9 @@
 		<java.version>1.8</java.version>
 		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
 		
+		<!-- Junit -->
+		<junit.version>4.12</junit.version>
+		
 		<!-- JPA / Hibernate -->
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<!-- Spring Data JPA -->
@@ -40,7 +43,8 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
+			<scope>test</scope>
 		</dependency>
 		
 		<!-- JPA / Hibernate -->
@@ -56,6 +60,7 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
