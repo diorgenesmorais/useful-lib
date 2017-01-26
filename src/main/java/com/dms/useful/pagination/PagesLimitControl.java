@@ -12,7 +12,7 @@ import com.dms.exceptions.ValidateException;
 public class PagesLimitControl {
 
 	/**
-	 * Limit maximum pages
+	 * Value pattern to be used.
 	 */
 	public static final int LIMIT_MAX_PAGE = 5;
 	private final int limitMax;
@@ -21,7 +21,7 @@ public class PagesLimitControl {
 
 	/**
 	 * Configures the default constructor with
-	 * {@code PagesLimitControl#LIMIT_MAX_PAGE}
+	 * {@link PagesLimitControl#LIMIT_MAX_PAGE}
 	 * 
 	 * @param current
 	 *            value of page.
