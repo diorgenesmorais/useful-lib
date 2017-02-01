@@ -16,13 +16,11 @@ public class DocumentTest {
 
 			@Override
 			protected String validateNumber(String number) throws ValidateException {
-				// TODO Auto-generated method stub
 				return null;
 			}
 
 			@Override
 			public String getNumberFormatted() {
-				// TODO Auto-generated method stub
 				return null;
 			}
 		};
