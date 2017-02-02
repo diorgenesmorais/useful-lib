@@ -1,4 +1,4 @@
-package com.dms.useful.test;
+package com.dms.useful.pagination.test;
 
 import static org.junit.Assert.*;
 
@@ -97,4 +97,38 @@ public class PagesLimitControlTest {
 		fail("deveria falhar: total de páginas deve ser maior que zero");
 	}
 
+	/**
+	 * Deve interar de 0 a (TOTAL - 1) gerando intervalos de páginas (ver
+	 * exemplo da tabela:
+	 * {@link PagesLimitControlTest#deveGerarUmIntervaloDeSeisPaginas()}
+	 * <pre>
+	 * TOTAL = 1153;
+	 * se current = 0 e {@link PagesLimitControl(current, TOTAL)}
+	 * o {@link PagesLimitControl#getFirst()} = 1 e {@link PagesLimitControl#getLast()} = 5
+	 * 
+	 * se current = 5 e {@link PagesLimitControl(current, TOTAL)}
+	 * o {@link PagesLimitControl#getFirst()} = 6 e {@link PagesLimitControl#getLast()} = 10
+	 * 
+	 * ... assim por diante
+	 * </pre>
+	 * 
+	 * @throws Exception
+	 *             não é esperado
+	 */
+	@Test
+	public void deveGerarContinuamenteNumeroMaximoDePagina() throws Exception {
+
+		int total = 1153;
+		pages = new PagesLimitControl(current, total);
+
+		int last = pages.getLast();
+
+		for (int current = 0; current < total; current++) {
+			pages = new PagesLimitControl(current, total);
+
+			last = pages.getLast();
+
+			assertEquals(true, current < last && current != last);
+		}
+	}
 }

@@ -7,7 +7,7 @@ import com.dms.exceptions.ValidateException;
  * Maintains a range based on the limit passed in the constructor.
  * 
  * @author Diorgenes Morais
- * @version 1.0.3
+ * @version 1.0.4
  */
 public class PagesLimitControl {
 
@@ -15,7 +15,6 @@ public class PagesLimitControl {
 	 * Value pattern to be used.
 	 */
 	public static final int LIMIT_MAX_PAGE = 5;
-	private final int limitMax;
 	private int first;
 	private int last;
 
@@ -51,22 +50,20 @@ public class PagesLimitControl {
 		if (current >= totalPages || totalPages < 1 || limitMaximum < 1) {
 			throw new ValidateException("The values passed in the parameters are not valid");
 		}
-		this.limitMax = limitMaximum;
-		int max = generateMaximumNumberOfPages(current, totalPages, this.limitMax);
+		int max = generateMaximumNumberOfPages(current, limitMaximum, limitMaximum);
 		this.last = Math.min(totalPages, max);
-		this.first = generateMinimumNumberOfPages(max, this.limitMax);
+		this.first = generateMinimumNumberOfPages(max, limitMaximum);
 	}
 
-	private int generateMaximumNumberOfPages(int current, int totalPages, int numberOfLastPage) {
-		if (current < numberOfLastPage) {
-			return numberOfLastPage;
-		} else {
-			return generateMaximumNumberOfPages(current, totalPages, numberOfLastPage += this.limitMax);
+	private int generateMaximumNumberOfPages(final int current, int numberOfLastPage, final int limitMaximum) {
+		while (current >= numberOfLastPage) {
+			numberOfLastPage += limitMaximum;
 		}
+		return numberOfLastPage;
 	}
 
-	private int generateMinimumNumberOfPages(final int last, int limitMax) {
-		return (last <= limitMax) ? 1 : (last - limitMax) + 1;
+	private int generateMinimumNumberOfPages(final int max, final int limitMaximum) {
+		return (max <= limitMaximum) ? 1 : (max - limitMaximum) + 1;
 	}
 
 	public int getFirst() {
