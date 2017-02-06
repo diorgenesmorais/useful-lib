@@ -40,12 +40,8 @@ public class BarcodeWeighingMachine extends Barcode {
 	 * @return price per unit of type {@code BigDecimal}.
 	 */
 	public BigDecimal getPricePerUnit() {
-		// são 5 digitos para o preço
-		StringBuilder base = new StringBuilder();
-		base.append(getNumber().substring(7, 10));
-		base.append(".");
-		base.append(getNumber().substring(10, 12));
-		return new BigDecimal(base.toString());
+		// separar os digitos e colocar um ponto: 0000000[000.00]0
+		return new BigDecimal(getNumber().substring(7, 12).replaceAll("(\\d{3})(\\d)", "$1.$2"));
 	}
 
 	/**
@@ -54,12 +50,8 @@ public class BarcodeWeighingMachine extends Barcode {
 	 * @return weight of type {@code Double}.
 	 */
 	public Double getWeight() {
-		// são 5 digitos para o peso
-		StringBuilder base = new StringBuilder();
-		base.append(getNumber().substring(7, 9));
-		base.append(".");
-		base.append(getNumber().substring(9, 12));
-		return Double.parseDouble(base.toString());
+		// separar os digitos e colocar um ponto: 0000000[00.000]0
+		return Double.parseDouble(getNumber().substring(7, 12).replaceAll("(\\d{2})(\\d)", "$1.$2"));
 	}
 
 }
