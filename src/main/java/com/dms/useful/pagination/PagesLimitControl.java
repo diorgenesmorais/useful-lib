@@ -14,7 +14,7 @@ public class PagesLimitControl {
 	/**
 	 * Value pattern to be used.
 	 */
-	public static final int LIMIT_MAX_PAGE = 5;
+	public static final int LIMIT_MAX_PAGE = 0b00110;
 	private int first;
 	private int last;
 
