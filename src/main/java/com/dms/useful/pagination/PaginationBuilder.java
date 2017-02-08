@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
  * Sets up a Criteria object with pagination.
  * 
  * @author Diorgenes Morais
- * @version 1.0.0
+ * @version 1.0.1
  */
 public class PaginationBuilder {
 
@@ -23,7 +23,7 @@ public class PaginationBuilder {
 	 * @param pageable
 	 *            To get information of Pageable.
 	 */
-	public PaginationBuilder(Criteria criteria, final Pageable pageable) {
+	public PaginationBuilder(final Criteria criteria, final Pageable pageable) {
 		this.criteria = criteria;
 		this.pageable = pageable;
 		this.limitConfiguration();
