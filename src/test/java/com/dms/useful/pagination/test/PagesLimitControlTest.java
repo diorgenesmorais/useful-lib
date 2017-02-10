@@ -103,10 +103,10 @@ public class PagesLimitControlTest {
 	 * {@link PagesLimitControlTest#deveGerarUmIntervaloDeSeisPaginas()}
 	 * <pre>
 	 * TOTAL = 1153;
-	 * se current = 0 e {@link PagesLimitControl(current, TOTAL)}
+	 * se current = 0 e new PagesLimitControl(current, TOTAL)
 	 * o {@link PagesLimitControl#getFirst()} = 1 e {@link PagesLimitControl#getLast()} = 5
 	 * 
-	 * se current = 5 e {@link PagesLimitControl(current, TOTAL)}
+	 * se current = 5 e new PagesLimitControl(current, TOTAL)
 	 * o {@link PagesLimitControl#getFirst()} = 6 e {@link PagesLimitControl#getLast()} = 10
 	 * 
 	 * ... assim por diante
