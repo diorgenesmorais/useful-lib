@@ -7,14 +7,14 @@ import com.dms.exceptions.ValidateException;
  * Maintains a range based on the limit passed in the constructor.
  * 
  * @author Diorgenes Morais
- * @version 1.0.4
+ * @version 1.0.5
  */
 public class PagesLimitControl {
 
 	/**
 	 * Value pattern to be used.
 	 */
-	public static final int LIMIT_MAX_PAGE = 0b00110;
+	public static final int LIMIT_MAX_PAGE = 0b00000101;
 	private int first;
 	private int last;
 
