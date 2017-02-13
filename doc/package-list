@@ -2,5 +2,3 @@ com.dms.annotations
 com.dms.exceptions
 com.dms.useful
 com.dms.useful.pagination
-com.dms.useful.pagination.test
-com.dms.useful.test
