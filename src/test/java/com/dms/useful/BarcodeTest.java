@@ -1,4 +1,4 @@
-package com.dms.useful.test;
+package com.dms.useful;
 
 import static org.junit.Assert.*;
 

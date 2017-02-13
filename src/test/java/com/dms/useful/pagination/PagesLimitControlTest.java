@@ -1,4 +1,4 @@
-package com.dms.useful.pagination.test;
+package com.dms.useful.pagination;
 
 import static org.junit.Assert.*;
 
