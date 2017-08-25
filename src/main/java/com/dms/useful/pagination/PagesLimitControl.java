@@ -47,14 +47,16 @@ public class PagesLimitControl {
 	 *             If the values passed in the parameters are not valid
 	 */
 	public PagesLimitControl(int current, int totalPages, final int limitMaximum) throws ValidateException {
-		if (current >= totalPages || totalPages < 1 || limitMaximum < 1) {
+		if (limitMaximum < 1) {
 			throw new ValidateException(String.format("[%s] The values passed in the parameters are not valid: "
 					+ "current page %d and pages total %d.", PagesLimitControl.class.getName() ,
 					current, totalPages));
 		}
-		int max = generateMaximumNumberOfPages(current, limitMaximum, limitMaximum);
-		this.last = Math.min(totalPages, max);
-		this.first = generateMinimumNumberOfPages(max, limitMaximum);
+		if(current < totalPages){
+			int max = generateMaximumNumberOfPages(current, limitMaximum, limitMaximum);
+			this.last = Math.min(totalPages, max);
+			this.first = generateMinimumNumberOfPages(max, limitMaximum);
+		}
 	}
 
 	private int generateMaximumNumberOfPages(final int current, int numberOfLastPage, final int limitMaximum) {
