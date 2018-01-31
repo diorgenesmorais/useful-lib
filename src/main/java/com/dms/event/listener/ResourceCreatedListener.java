@@ -5,7 +5,6 @@ import java.net.URI;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.dms.event.ResourceCreatedEvent;
@@ -18,7 +17,6 @@ import com.dms.event.ResourceCreatedEvent;
  * @author Diorgenes Morais
  * 
  */
-@Component
 public class ResourceCreatedListener implements ApplicationListener<ResourceCreatedEvent> {
 
 	@Override
