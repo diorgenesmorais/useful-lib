@@ -4,7 +4,7 @@
 
 	<groupId>com.dms</groupId>
 	<artifactId>useful-lib</artifactId>
-	<version>1.1.4</version>
+	<version>1.1.5</version>
 	<description>Biblioteca útil</description>
 
 	<properties>
@@ -21,6 +21,9 @@
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<!-- Spring Data JPA -->
 		<spring-data-jpa.version>1.10.5.RELEASE</spring-data-jpa.version>
+		
+		<!-- Servlet API -->
+		<servlet.version>3.1.0</servlet.version>
 	</properties>
 
 	<build>
@@ -61,6 +64,21 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Servlet API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId>
+		    <version>1.5.9.RELEASE</version>
 		</dependency>
 	</dependencies>
 </project>
