@@ -1,6 +1,6 @@
 package com.dms.useful;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 
 /**
  * {@code Barcode} can't be invalid throws {@link ValidateException}, it must

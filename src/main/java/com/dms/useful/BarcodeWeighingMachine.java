@@ -2,7 +2,7 @@ package com.dms.useful;
 
 import java.math.BigDecimal;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 
 /**
  * {@code BarcodeWeighingMachine} can't be invalid throws

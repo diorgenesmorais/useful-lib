@@ -1,4 +1,4 @@
-package com.dms.exceptions;
+package com.dms.exception;
 
 /**
  * {@code ValidateException} of type checked.
