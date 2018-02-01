@@ -1,6 +1,6 @@
 package com.dms.useful;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 
 /**
  * {@code Document} class is a abstraction of (RG, CPF, CNPJ...) Note:

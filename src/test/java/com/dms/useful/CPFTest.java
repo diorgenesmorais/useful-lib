@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 import com.dms.useful.CPF;
 import com.dms.useful.Document;
 

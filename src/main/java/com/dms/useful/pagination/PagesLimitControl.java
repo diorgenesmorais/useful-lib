@@ -1,6 +1,6 @@
 package com.dms.useful.pagination;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 
 /**
  * This class defines the minimum and maximum limit of pages to be generated.
