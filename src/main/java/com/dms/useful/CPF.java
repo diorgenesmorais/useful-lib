@@ -1,7 +1,7 @@
 package com.dms.useful;
 
 import com.dms.annotations.ToDo;
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 
 /**
  * {@link Document} {@code CPF} can't be invalid throws

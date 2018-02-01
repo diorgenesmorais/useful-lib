@@ -2,7 +2,7 @@ package com.dms.useful;
 
 import org.junit.Test;
 
-import com.dms.exceptions.ValidateException;
+import com.dms.exception.ValidateException;
 import com.dms.useful.Document;
 
 public class DocumentTest {

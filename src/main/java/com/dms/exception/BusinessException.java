@@ -1,4 +1,4 @@
-package com.dms.exceptions;
+package com.dms.exception;
 
 /**
  * {@code BusinessException} it is a class of exceptions that can be generated
