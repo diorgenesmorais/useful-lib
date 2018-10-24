@@ -1,50 +1,72 @@
 package com.dms.useful;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.dms.exception.ValidateException;
-import com.dms.useful.CPF;
-import com.dms.useful.Document;
 
 public class CPFTest {
 
 	private Document document;
 
-	@Test(expected = ValidateException.class)
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
+	@Test
 	public void devePossuir_11_Digitos() throws Exception {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("O CPF deve possuir 11 digitos.");
+
 		document = new CPF("7656765045");
-		fail("Deve lançar uma exceção: O número do CPF deve possuir 11 digitos.");
 	}
 
-	@Test(expected = ValidateException.class)
+	@Test
 	public void deveSerInvalido() throws Exception {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Não é um número de CPF válido");
+
 		document = new CPF("76567650453");
-		fail("Deve lançar uma exceção: Não é um número de CPF válido");
 	}
 
 	@Test
 	public void deveSerValido() throws Exception {
 		document = new CPF("766.676.504-53");
-		assertEquals("76667650453", document.getNumber());
+
+		assertThat(document.getNumber(), is("76667650453"));
 	}
 
 	@Test
 	public void deveObterCPFFormatado() throws Exception {
 		document = new CPF("76667650453");
-		assertEquals("766.676.504-53", document.getNumberFormatted());
+
+		assertThat(document.getNumberFormatted(), is("766.676.504-53"));
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void deveGerarNullPointerException() throws Exception {
+	@Test
+	public void deveGerarNullPointerException() {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Parâmetro não pode ser nulo");
+
 		document = new CPF(null);
-		fail("Deve lançar uma exceção: parâmetro não pode ser nulo");
 	}
 
-	@Test(expected = ValidateException.class)
-	public void devePossuirApenasNumero() throws Exception {
+	@Test
+	public void devePossuirApenasNumero() {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("O CPF deve possuir 11 digitos.");
+
 		document = new CPF("76t.6t6.504-53");
-		fail("Deve lançar uma exceção: não pode conter caracteres");
+	}
+
+	@Test
+	public void documentosSaoIguais() {
+		Document expected = new CPF("766.676.504-53");
+		document = new CPF("76667650453");
+
+		assertThat(document, is(expected));
 	}
 }
