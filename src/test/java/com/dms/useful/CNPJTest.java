@@ -1,8 +1,12 @@
 package com.dms.useful;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.dms.exception.ValidateException;
 import com.dms.useful.CNPJ;
@@ -12,28 +16,39 @@ public class CNPJTest {
 
 	private Document document;
 
-	@Test(expected = ValidateException.class)
-	public void devePossuir_14_digitos() throws Exception {
-		document = new CNPJ("0614988800010");
-		fail("Deve lançar uma exceção: O número deve possuir 14 digitos");
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+
+	@Test
+	public void devePossuir_14_digitos() {
+		try {
+			document = new CNPJ("0614988800010");
+			Assert.fail("Deveria ter lançado uma ValidateException");
+		} catch (ValidateException e) {
+			assertThat(e.getMessage(), is("O número deve possuir 14 digitos"));
+		}
 	}
 
-	@Test(expected = ValidateException.class)
+	@Test
 	public void deveSerInvalido() throws Exception {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Este número informado não é válido");
+
 		document = new CNPJ("06.148.888/0001-05");
-		fail("Deve lançar uma exceção: Este número informado não é válido");
 	}
 
 	@Test
 	public void deveSerValido() throws Exception {
 		document = new CNPJ("06149888000105");
-		assertEquals("06149888000105", document.getNumber());
+
+		assertThat(document.getNumber(), is("06149888000105"));
 	}
 
 	@Test
 	public void deveObterFormatado() throws Exception {
 		document = new CNPJ("06149888000105");
-		assertEquals("06.149.888/0001-05", document.getNumberFormatted());
+
+		assertThat(document.getNumberFormatted(), is("06.149.888/0001-05"));
 	}
 
 }
