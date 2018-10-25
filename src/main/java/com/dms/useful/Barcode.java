@@ -14,6 +14,9 @@ public class Barcode {
 	private final String number;
 
 	public Barcode(String number) throws ValidateException {
+		if (number == null) {
+			throw new ValidateException("Parâmetro não pode ser nulo");
+		}
 		this.number = getCodeValid(number.replaceAll("\\.|-|/", ""));
 	}
 
@@ -51,6 +54,11 @@ public class Barcode {
 	}
 
 	@Override
+	public String toString() {
+		return number;
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -73,11 +81,6 @@ public class Barcode {
 		} else if (!number.equals(other.number))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return number;
 	}
 
 }

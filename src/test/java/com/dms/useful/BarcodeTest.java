@@ -1,44 +1,58 @@
 package com.dms.useful;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.dms.exception.ValidateException;
-import com.dms.useful.Barcode;
 
 public class BarcodeTest {
 
 	private Barcode barcode;
+	
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
 
-	@Test(expected = NullPointerException.class)
-	public void deveThrowsExceptionIfNull() throws Exception {
+	@Test
+	public void deveThrowsExceptionIfNull() {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Parâmetro não pode ser nulo");
+		
 		barcode = new Barcode(null);
-		fail("deve lançar uma exceção: Null Number");
 	}
 
-	@Test(expected = ValidateException.class)
-	public void deveThrowsExceptionIfEmpty() throws Exception {
+	@Test
+	public void deveThrowsExceptionIfEmpty() {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Number out of range [8 | -- | 18]");
+		
 		barcode = new Barcode("");
-		fail("deve lançar uma exceção: Number out of range [8 | -- | 18]");
 	}
 
-	@Test(expected = ValidateException.class)
+	@Test
 	public void throwsExceptionIfNumberOutOfRange() throws Exception {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Number out of range [8 | -- | 18]");
+		
 		barcode = new Barcode("9876584");
-		fail("deve lançar uma exceção: Number out of range [8 | -- | 18]");
 	}
 
-	@Test(expected = ValidateException.class)
-	public void deveSerUmBarcodeInvalido() throws Exception {
+	@Test
+	public void deveSerUmBarcodeInvalido() {
+		exception.expect(ValidateException.class);
+		exception.expectMessage("Number invalid barcode");
+		
 		barcode = new Barcode("7891100053508");
-		fail("deve lançar uma exceção: Number invalid barcode");
 	}
 
 	@Test
 	public void deveSerUmBarcodeValido() throws Exception {
 		barcode = new Barcode("7891000053508");
-		assertEquals("7891000053508", barcode.getNumber());
+		
+		assertThat(barcode.getNumber(), equalTo("7891000053508"));
 	}
 
 }
