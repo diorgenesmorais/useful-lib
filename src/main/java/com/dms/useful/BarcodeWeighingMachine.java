@@ -9,7 +9,7 @@ import com.dms.exception.ValidateException;
  * {@link ValidateException}, it must have number valid.
  * 
  * @author Diorgenes Morais
- * @version 1.0.0
+ * @version 1.0.1
  * 
  */
 public class BarcodeWeighingMachine extends Barcode {
@@ -47,11 +47,11 @@ public class BarcodeWeighingMachine extends Barcode {
 	/**
 	 * Get weight.
 	 * 
-	 * @return weight of type {@code Double}.
+	 * @return weight of type {@code BigDecimal}.
 	 */
-	public Double getWeight() {
+	public BigDecimal getWeight() {
 		// separar os digitos e colocar um ponto: 0000000[00.000]0
-		return Double.parseDouble(getNumber().substring(7, 12).replaceAll("(\\d{2})(\\d)", "$1.$2"));
+		return new BigDecimal(getNumber().substring(7, 12).replaceAll("(\\d{2})(\\d)", "$1.$2"));
 	}
 
 }
