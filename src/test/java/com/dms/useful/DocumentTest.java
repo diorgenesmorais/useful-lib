@@ -7,8 +7,8 @@ import com.dms.useful.Document;
 
 public class DocumentTest {
 
-	@Test(expected = NullPointerException.class)
-	public void deveLancarNullPointException() throws Exception {
+	@Test(expected = ValidateException.class)
+	public void deveLancarValidateException() throws Exception {
 		/**
 		 * Document não deve receber null como parâmetro em seu construtor.
 		 */
