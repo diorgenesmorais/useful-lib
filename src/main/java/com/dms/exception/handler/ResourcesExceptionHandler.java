@@ -19,20 +19,29 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * Classe que manipula as excessões da API
+ * Classe abstrata que manipula as excessões da API.
+ * 
+ * <pre>
+ * Para implementar no projeto, basta extender e anotar com
+ * &#64;ControllerAdvice
+ * 
+ * Para implementar mensagens personalizadas para o usuário
+ * criar no path src/main/resources o arquivo
+ * messages.properties
+ * Ex. de menssagem:
+ * resource.not-found=Recurso n\u00E3o encontrado
+ * </pre>
  * 
  * @author Diorgenes Morais
- * @version 1.0.0
+ * @version 1.0.1
  * @since 1.1.6
  */
-@ControllerAdvice
-public class ResourcesExceptionHandler extends ResponseEntityExceptionHandler {
+public abstract class ResourcesExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Autowired
 	private MessageSource messageSource;
