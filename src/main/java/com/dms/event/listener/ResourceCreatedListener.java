@@ -10,6 +10,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.dms.event.ResourceCreatedEvent;
 
 /**
+ * Esta classe adiciona um Location no Headers na resposta da requisição,
+ * informando como acessar o novo recurso criado.
+ * 
+ * <pre>
+ * Extender está num pacote <project package>.event.listener
+ * colocando a anotação {@code &#064;Component}
+ * </pre>
+ * 
  * This class has some dependencies that were inserted on the pom.xml
  * 
  * @see https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
@@ -17,17 +25,17 @@ import com.dms.event.ResourceCreatedEvent;
  * @author Diorgenes Morais
  * 
  */
-public class ResourceCreatedListener implements ApplicationListener<ResourceCreatedEvent> {
+public abstract class ResourceCreatedListener<ID> implements ApplicationListener<ResourceCreatedEvent<ID>> {
 
 	@Override
-	public void onApplicationEvent(ResourceCreatedEvent event) {
+	public void onApplicationEvent(ResourceCreatedEvent<ID> event) {
 		HttpServletResponse response = event.getResponse();
-		Long id = event.getId();
+		ID id = event.getId();
 
 		addHeaderLocation(response, id);
 	}
 
-	private void addHeaderLocation(HttpServletResponse response, Long id) {
+	private void addHeaderLocation(HttpServletResponse response, ID id) {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
 		response.setHeader("Location", uri.toASCIIString());
 	}

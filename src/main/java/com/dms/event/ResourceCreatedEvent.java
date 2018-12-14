@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationEvent;
 
-public class ResourceCreatedEvent extends ApplicationEvent {
+public class ResourceCreatedEvent<ID> extends ApplicationEvent {
 
 	private static final long serialVersionUID = 7067219761465481821L;
 
 	private HttpServletResponse response;
-	private Long id;
+	private ID id;
 
 	/**
 	 * Constructor override
@@ -20,7 +20,7 @@ public class ResourceCreatedEvent extends ApplicationEvent {
 	 * @param id
 	 *            of model (resource)
 	 */
-	public ResourceCreatedEvent(Object source, HttpServletResponse response, Long id) {
+	public ResourceCreatedEvent(Object source, HttpServletResponse response, ID id) {
 		super(source);
 		this.response = response;
 		this.id = id;
@@ -30,7 +30,7 @@ public class ResourceCreatedEvent extends ApplicationEvent {
 		return response;
 	}
 
-	public Long getId() {
+	public ID getId() {
 		return id;
 	}
 
