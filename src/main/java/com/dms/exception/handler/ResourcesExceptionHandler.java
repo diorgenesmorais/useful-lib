@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.ConstraintViolationException;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -115,4 +117,14 @@ public abstract class ResourcesExceptionHandler extends ResponseEntityExceptionH
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
 	}
 
+	@ExceptionHandler({ ConstraintViolationException.class })
+	public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request){
+		String userMessage = getMessageProperties("resource.not-acceptable");
+		List<ErrorDetails> erros = Arrays
+				.asList(ErrorDetailsBuilder.newBuilder().title("Must not be null")
+						.status(HttpStatus.NOT_ACCEPTABLE.value()).timestamp(new Date().getTime())
+						.userMessage(userMessage).developerMessage(ExceptionUtils.getRootCauseMessage(ex)).build());
+
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
+	}
 }
